@@ -2,7 +2,7 @@ package com.techlab.articulo;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-//VAMOS A VER HASTA INTERFZAS!!!!!
+//VAMOS A VER HASTA INTERFaS!!!!!
 public class App {
         // METODO leerEntero
     public static int leerEntero(Scanner scanner, String mensaje){
