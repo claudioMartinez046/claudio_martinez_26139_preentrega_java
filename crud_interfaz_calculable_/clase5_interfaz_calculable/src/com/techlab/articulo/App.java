@@ -110,7 +110,7 @@ public class App {
         System.out.println("1 - Artículo electrónico");
         System.out.println("2 - Artículo alimenticio");
 
-        int tipo;// hasta aca
+        int tipo;
         do {
             tipo = leerEntero(scanner, "Seleccione el tipo de artículo: ");
             if (tipo != 1 && tipo != 2) {
@@ -135,6 +135,7 @@ public class App {
 
         if (tipo == 1) {
             int garantiaMeses = leerEnteroNoNegativo(scanner, "Ingrese la garantía en meses: ");
+            //aca se instancia articulo electronico(hijo) apartir de la clase padre herencia
             articulo = new ArticuloElectronico(codigo, nombre, precio, categoria, garantiaMeses);
         } else {
             int diasParaVencimiento = leerEnteroNoNegativo(scanner, "Ingrese los días para vencimiento: ");

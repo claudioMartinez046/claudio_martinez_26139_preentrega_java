@@ -79,9 +79,51 @@ public class App {
             System.out.println("2 - Artículo alimenticio");
             
             int tipo;
+            //ingresa seleccion de articulo
             do {
-                
-            } while (condition:var(boolean));
+                tipo = leerEntero(scanner, "Seleccione el tipo de artículo: ");
+                if (tipo != 1 && tipo != 2) {
+                    System.out.println("error!! debe elegir entre 1 y 2");
+                }
+            } while (tipo != 1 && tipo != 2);
+
+            //buscardor de articulo con verificacion
+            int codigo = leerEntero(scanner, "Ingrese el código del artículo: ");
+            if (buscarArticuloPorCodigo(scanner, codigo)) {
+                System.out.println("\nError: ya existe un artículo con ese código.");
+                return;
+            }
+            // ingreso de nombre y precio con su respectiva verificacion
+            String nombre = leerTextoNoVacio(scanner, "Ingrese el nombre del articulo: ");
+            double precio = leerDoubleNoNegativo(scanner, "Ingrese el precio del artículo: ");
+
+            listarCategorias(categorias);
+            Categoria categoria = pedirCategoriaExistente(scanner, categorias);
+            
+            //declaro objeto articulo //aca se aplicael poli,orfimos
+            Articulo articulo;
+
+            //en este if se asigna garantia o vencimiento
+            //depende del tipo de articulo que se selecciono
+           if (tipo == 1) {
+            int garantiaMeses = leerEnteroNoNegativo(scanner, "Ingrese la garantía en meses: ");
+            //aca se instancia articulo electronico(hijo) apartir de la clase padre herencia
+            articulo = new ArticuloElectronico(codigo, nombre, precio, categoria, garantiaMeses);
+             } 
+            else {
+            int diasParaVencimiento = leerEnteroNoNegativo(scanner, "Ingrese los días para vencimiento: ");
+            articulo = new ArticuloAlimenticio(codigo, nombre, precio, categoria, diasParaVencimiento);
+        }
+
+            //los articulos ingresados se cargan en el array
+            articulos.add(articulo);
+
+            System.out.println("Artículo ingresado correctamente.");
+            System.out.println("Resumen del objeto creado:");
+            System.out.println(articulo);
+            System.out.println("Precio final calculado: " + articulo.calcularPrecioFinal());
+
+
         }
         
 
