@@ -1,12 +1,11 @@
 package com.techlab.articulo;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import com.techlab.articulo.model.Articulo;
 import com.techlab.articulo.model.ArticuloAlimenticio;
 import com.techlab.articulo.model.ArticuloElectronico;
 import com.techlab.articulo.model.Categoria;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /*
  * CLASE 5 - INTERFAZ CALCULABLE
@@ -103,8 +102,7 @@ public class App {
         categorias.add(new Categoria(4, "Limpieza", "Artículos de limpieza del hogar"));
     }
 
-    public static void ingresarArticulo(
-            Scanner scanner,
+    public static void ingresarArticulo(Scanner scanner,
             ArrayList<Articulo> articulos,
             ArrayList<Categoria> categorias
     ) {
@@ -112,7 +110,7 @@ public class App {
         System.out.println("1 - Artículo electrónico");
         System.out.println("2 - Artículo alimenticio");
 
-        int tipo;
+        int tipo;// hasta aca
         do {
             tipo = leerEntero(scanner, "Seleccione el tipo de artículo: ");
             if (tipo != 1 && tipo != 2) {
