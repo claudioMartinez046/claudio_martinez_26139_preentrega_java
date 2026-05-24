@@ -122,11 +122,49 @@ public class App {
             System.out.println("Resumen del objeto creado:");
             System.out.println(articulo);
             System.out.println("Precio final calculado: " + articulo.calcularPrecioFinal());
-
-
         }
         
+         //metodos
+         public static void listarArticulos(arrayList<Articulo> articulos){
+            println("\n--- LISTA DE ARTÍCULOS ---");
+            //verifico si hay articulos cargados
+            if (articulos.isEmpty()) {
+                println("No hay artículos registrados.");
+                return;
+            }
+            //recorro el array de articulos y los imprimo
+            for (Articulo articulo : articulos) {
+                System.out.println(articulo);
+                //detalle especifico es un metodo abstracto de Articulo que oblica a sus hijas implementar
+                System.out.println("Detalle especifico: " + articulo.getDetalleEspecifico());
+                //calcular precio final es un metodo de la interfaz calculable que implementan las clases que la invocan
+                System.out.println("Precio final calculado: " + articulo.calcularPrecioFinal());
+                System.out.println("-----------------------------------");
+            }
+         }
 
+         public static void consultarArticulo(Scanner scanner, ArrayList<Articulo> articulos){
+            System.out.println("\n--- CONSULTAR ARTÍCULO ---");
+           
+            if (articulos.isEmpty()) {
+            System.out.println("No hay artículos cargados.");
+            return;
+        }
+        int codigo = leerEntero(scanner, "Ingrese el código del artículo a consultar: ");
+        
+        Articulo articulo = buscarArticuloPorCodigo(scanner, codigo);
+
+        if (articulo == null){
+            System.out.println("el articulo no existe");
+            return;
+        }
+        
+        System.out.println("Artículo encontrado:");
+        System.out.println(articulo);
+        System.out.println("Detalle específico: " + articulo.getDetalleEspecifico());
+        System.out.println("Precio final calculado: " + articulo.calcularPrecioFinal());
+
+         }
 
 
 }
