@@ -194,7 +194,7 @@ public class App {
         System.out.println(articulo);
         System.out.println("Detalle específico: " + articulo.getDetalleEspecifico());
         System.out.println("Precio final calculado: " + articulo.calcularPrecioFinal());
-    } // hasta aca
+    } 
 
     public static void modificarArticulo(
             Scanner scanner,
@@ -216,7 +216,7 @@ public class App {
             System.out.println("El artículo no existe.");
             return;
         }
-
+        //hasta aca
         String nuevoNombre = leerTextoNoVacio(scanner, "Ingrese el nuevo nombre del artículo: ");
         double nuevoPrecio = leerDoubleNoNegativo(scanner, "Ingrese el nuevo precio del artículo: ");
 

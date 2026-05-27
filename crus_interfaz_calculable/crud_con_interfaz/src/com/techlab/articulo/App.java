@@ -125,7 +125,7 @@ public class App {
         }
         
          //metodos
-         public static void listarArticulos(arrayList<Articulo> articulos){
+        public static void listarArticulos(arrayList<Articulo> articulos){
             println("\n--- LISTA DE ARTÍCULOS ---");
             //verifico si hay articulos cargados
             if (articulos.isEmpty()) {
@@ -141,30 +141,54 @@ public class App {
                 System.out.println("Precio final calculado: " + articulo.calcularPrecioFinal());
                 System.out.println("-----------------------------------");
             }
-         }
+        }
 
-         public static void consultarArticulo(Scanner scanner, ArrayList<Articulo> articulos){
+        public static void consultarArticulo(Scanner scanner, ArrayList<Articulo> articulos){
             System.out.println("\n--- CONSULTAR ARTÍCULO ---");
            
             if (articulos.isEmpty()) {
-            System.out.println("No hay artículos cargados.");
-            return;
-        }
-        int codigo = leerEntero(scanner, "Ingrese el código del artículo a consultar: ");
+                System.out.println("No hay artículos cargados.");
+                return;
+            }
+            int codigo = leerEntero(scanner, "Ingrese el código del artículo a consultar: ");
         
-        Articulo articulo = buscarArticuloPorCodigo(scanner, codigo);
+            Articulo articulo = buscarArticuloPorCodigo(scanner, codigo);
 
-        if (articulo == null){
-            System.out.println("el articulo no existe");
-            return;
-        }
+            if (articulo == null){
+                System.out.println("el articulo no existe");
+                return;
+            }
         
-        System.out.println("Artículo encontrado:");
-        System.out.println(articulo);
-        System.out.println("Detalle específico: " + articulo.getDetalleEspecifico());
-        System.out.println("Precio final calculado: " + articulo.calcularPrecioFinal());
+            System.out.println("Artículo encontrado:");
+            System.out.println(articulo);
+            System.out.println("Detalle específico: " + articulo.getDetalleEspecifico());
+            System.out.println("Precio final calculado: " + articulo.calcularPrecioFinal());
 
-         }
+        }
+
+        public static void modificarArticulo(
+            Scanner scanner,
+            ArrayList<Articulo> articulos,
+            ArrayList<Categoria> categorias
+        ){
+            System.out.println("\n--- MODIFICAR ARTÍCULO ---");
+
+            //validacion 
+            if (articulos.isEmpty()) {
+                System.out.println("No hay artículos cargados.");
+                return;
+            }
+            int codigo = leerEntero(scanner, "Ingrese el código del artículo a modificar: ");
+            
+            Articulo articulo = buscarArticuloPorCodigo(articulos, codigo);
+
+            if (artculo == null){
+                System.out.println("el articulo no existe");
+                return; 
+            }
+        }
+         
+       
 
 
 }
