@@ -182,11 +182,83 @@ public class App {
             
             Articulo articulo = buscarArticuloPorCodigo(articulos, codigo);
 
-            if (artculo == null){
+            if (articulo == null){
                 System.out.println("el articulo no existe");
                 return; 
             }
+            //despues de pasar los filtros se realiza las modificaciones
+            String nuevoNombre = leerTextoNoVacio(scanner, "Ingrese el nuevo nombre del artículo: ");
+            double nuevoPrecio = leerDoubleNoNegativo(scanner, "Ingrese el nuevo precio del artículo: ");
+
+            listarCategorias(categorias);
+            Categoria nuevaCategoria = pedirCategoriaExistente(scanner, categorias);
+
+            //una vez obtenido los nuevos datos de modificado
+            //se asigna a los atributos del articulo.
+            articulo.setNombre(nuevoNombre);
+            articulo.setPrecio(nuevoPrecio);
+            articulo.setCategoria(nuevaCategoria);
+
+            /*
+            El operador instanceof en Java sirve para verificar en 
+            tiempo de ejecución si un objeto pertenece a una clase específica,
+            a una de sus subclases o si implementa una interfaz determinada.
+            Devuelve true si se cumple la condición, o false en caso contrario.
+            El operador instanceof en Java sirve para verificar en tiempo de ejecución
+            si un objeto pertenece a una clase específica, a una de sus subclases o si implementa 
+            una interfaz determinada. Devuelve true si se cumple la condición, o false en caso contrario.
+            EJ.Imagina que tienes una clase general Vehiculo y dos subclases: Auto y Moto.Si creas una lista de 
+            vehículos y quieres saber exactamente qué estás iterando para realizar una acción diferente en cada caso,
+            usas instanceof:
+            */
+            if (articulo instanceof ArticuloElectronico) {
+                ArticuloElectronico electronico = (ArticuloElectronico) articulo;
+                int nuevaGarantia = leerEnteroNoNegativo(scanner, "Ingrese la nueva garantía en meses: ");
+                electronico.setGarantiaMeses(nuevaGarantia);
+            }
+            
+            if (articulo instanceof ArticuloAlimenticio) {
+                ArticuloAlimenticio alimenticio = (ArticuloAlimenticio) articulo;
+                int nuevosDias = leerEnteroNoNegativo(scanner, "Ingrese los nuevos días para vencimiento: ");
+                alimenticio.setDiasParaVencimiento(nuevosDias);
+            }
+
+            System.out.println("Artículo modificado correctamente.");
+            System.out.println("Nuevo precio final: " + articulo.calcularPrecioFinal());
+
         }
+
+        public static void eliminarArticulo(Scanner scanner, ArrayList<articulo> articulos){
+            System.out.println("\n--- ELIMINAR ARTÍCULO ---");
+
+            //valicadaciones
+            if (articulos.isEmpty()) {
+                System.out.println("No hay artículos cargados.");
+                return;
+            }
+            int  codigo = leerEntero(scanner, "Ingrese el código del artículo a eliminar: ");
+
+            Articulo articulo = buscarArticuloPorCodigo(articulos, codigo);
+
+            if (articulo == null){
+                System.out.println("el articulo no existe");
+                return; 
+            }
+
+            articulos.remove(articulo);
+            System.out.println("Artículo eliminado correctamente.");          
+        }
+
+        public static void ListarCategorias(arrayList<Categoria> categorias){
+            System.out.println("\n--- CATEGORÍAS DISPONIBLES ---");
+
+            for (Categoria categoria : categorias) {
+                System.out.println(categoria);
+            }
+        }
+
+        //ver con detencion
+        
          
        
 
